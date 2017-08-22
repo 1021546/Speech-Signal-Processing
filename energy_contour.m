@@ -1,4 +1,4 @@
-function energy_contour(y,frame_num,frame_size,frame_shift)
+function energy=energy_contour(y,frame_num,frame_size,frame_shift)
 energy(frame_num) = 0;
 for n = 1:frame_num
 	temp = (n-1)*frame_shift;
