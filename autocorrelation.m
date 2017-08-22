@@ -19,6 +19,6 @@ autocorrelation_temp = autocorrelation_all(frame_autocorrelation_no,:);
 
 subplot(6, 1, 4);
 x = 1:frame_size;
-plot(x, autocorrelation_temp);
+plot(x, autocorrelation_temp, 'r');
 axis([0, frame_size, -inf, inf]);
-title(strcat('Autocorrelation on Frame¡@',num2str(frame_autocorrelation_no)))
+title(strcat('Autocorrelation on FrameÂ¡@',num2str(frame_autocorrelation_no)))
