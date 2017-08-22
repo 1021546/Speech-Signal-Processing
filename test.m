@@ -1,5 +1,6 @@
 % get audio inform
-fileName='zxcdfd.wav';
+fileName='zhh1.wav';
+%fileName='zxcdfd.wav';
 %fileName='yesnodata.wav';
 [y, fs] = audioread(fileName); 
 audioInfo = audioinfo(fileName);
@@ -19,11 +20,11 @@ waveform(y,audioInfo,frame_num);
 
 % -----------------------------------------------
 % Energy
-energy_contour(y,frame_num,frame_size,frame_shift);
+Energy=energy_contour(y,frame_num,frame_size,frame_shift);
 
 % -----------------------------------------------
 % Zero Crossing Rate
-zero_crossing_rate_contour(y,frame_num,frame_size,frame_shift);
+Zero_Crossing_Rate=zero_crossing_rate_contour(y,frame_num,frame_size,frame_shift);
 
 % -----------------------------------------------
 % Autocorrelation on Frame XXX
@@ -31,8 +32,10 @@ autocorrelation_all=autocorrelation(y,frame_num,frame_size,frame_shift,frame_aut
 
 % -----------------------------------------------
 % Pitch
-pitch_contour(audioInfo,frame_num,frame_size,frame_shift,autocorrelation_all);
+energy_sill=energy_threshold(Energy);
+pitch_contour(audioInfo,frame_num,frame_size,autocorrelation_all,energy_sill,Energy);
 
 % -----------------------------------------------
 % End Point Detection
-%end_point_detection();
+izct_sill=izct_threshold(Zero_Crossing_Rate);
+end_point_detection(y,frame_num,audioInfo,Energy,Zero_Crossing_Rate,energy_sill,izct_sill);
