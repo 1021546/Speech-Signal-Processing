@@ -1,18 +1,18 @@
-% get audio inform
+% get audio information
 fileName='zhh1.wav';
 %fileName='zxcdfd.wav';
 %fileName='yesnodata.wav';
-[y, fs] = audioread(fileName); 
+[y, Fs] = audioread(fileName);  % Fs == audioInfo.SampleRate
 audioInfo = audioinfo(fileName);
 
+% -----------------------------------------------
 % variable declaration
 frame_size_ms = 32;
 frame_shift_ms = 16;
 frame_size = frame_size_ms*0.001*audioInfo.SampleRate;
 frame_shift = frame_shift_ms*0.001*audioInfo.SampleRate;
-frame_num = floor((audioInfo.TotalSamples-(frame_size-frame_shift))/frame_shift);
-frame_autocorrelation_no = 170;
-volume_threshold = 100;
+frame_num = floor((audioInfo.TotalSamples-(frame_size-frame_shift))/frame_shift); % insufficient frame size to abort
+frame_autocorrelation_no = 113;
 
 % -----------------------------------------------
 % Wave Form
@@ -27,7 +27,7 @@ Energy=energy_contour(y,frame_num,frame_size,frame_shift);
 Zero_Crossing_Rate=zero_crossing_rate_contour(y,frame_num,frame_size,frame_shift);
 
 % -----------------------------------------------
-% Autocorrelation on Frame XXX
+% Autocorrelation on Frame Number
 autocorrelation_all=autocorrelation(y,frame_num,frame_size,frame_shift,frame_autocorrelation_no);
 
 % -----------------------------------------------

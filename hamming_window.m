@@ -1,2 +1,2 @@
-function hamming_y = hamming_window(hamming_x, hamming_size)
-hamming_y = 0.54-0.46*cos(2*pi*hamming_x/(hamming_size-1)); 
+function amplitude = hamming_window(sample, hamming_size)
+amplitude = 0.54-0.46*cos(2*pi*sample/(hamming_size-1)); 
