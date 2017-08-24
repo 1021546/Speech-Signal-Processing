@@ -3,7 +3,7 @@ pitch(frame_num) = 0;
 peak_count = 3; % every frame choose three peaks
 peak_start = 1; % first frame has high autocorrelation
 
-% å¾žautocorrelationç®—é »çŽ‡ï¼Œå…±peak_countå€‹é€±æœŸ
+% ±qautocorrelationºâÀW²v¡A¦@peak_count­Ó¶g´Á
 for n = 1:frame_num
 	temp_count = peak_count;
 	peak_end = 1;
@@ -15,7 +15,7 @@ for n = 1:frame_num
 		if temp_count == 0
 			break;
 		end
-		if (autocorrelation_all(n,m) > autocorrelation_all(n,m-1)) && (autocorrelation_all(n,m) > autocorrelation_all(n,m+1))
+		if (autocorrelation_all(n,m) > autocorrelation_all(n,m-1)) && (autocorrelation_all(n,m) > autocorrelation_all(n,m+1)) % find peak
 			temp_count = temp_count - 1;
             peak_end = m;
 		end
