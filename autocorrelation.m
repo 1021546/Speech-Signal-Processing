@@ -3,13 +3,13 @@ autocorrelation_temp(frame_size) = 0;
 temp_seq(frame_size) = 0;
 autocorrelation_all(frame_num, frame_size) = 0;
 
-for n = 1:frame_num
+for n = 1:frame_num % record each frame autocorrelation
 	temp = (n-1)*frame_shift;
-	for m = 1:frame_size
+	for m = 1:frame_size % record each frame temp_seq(sample point)
 		temp_seq(m) = y(temp+m)*hamming_window(n-(temp+m), frame_size);
 	end
 	for k = 1:frame_size
-		autocorrelation_all(n, k) = sum(temp_seq(1:frame_size-k+1).*temp_seq(k:frame_size));
+		autocorrelation_all(n, k) = sum(temp_seq(k:frame_size).*temp_seq(1:frame_size-k+1)); % fixed .* moved
 	end
 end
 
