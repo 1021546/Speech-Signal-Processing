@@ -3,7 +3,7 @@ pitch(frame_num) = 0;
 peak_count = 3; % every frame choose three peaks
 peak_start = 1; % first sample point has high autocorrelation
 
-% ±qautocorrelationºâÀW²v¡A¦@peak_count­Ó¶g´Á
+% å¾žautocorrelationç®—é »çŽ‡ï¼Œå…±peak_countå€‹é€±æœŸ
 for n = 1:frame_num
     temp_count = peak_count;
 	peak_end = 1;
