@@ -1,28 +1,28 @@
 function pitch_contour(audioInfo,frame_num,frame_size,autocorrelation_all,energy_sill,Energy)
 pitch(frame_num) = 0;
 peak_count = 3; % every frame choose three peaks
-peak_start = 1; % first frame has high autocorrelation
+peak_start = 1; % first sample point has high autocorrelation
 
-% å¾žautocorrelationç®—é »çŽ‡ï¼Œå…±peak_countå€‹é€±æœŸ
+% ±qautocorrelationºâÀW²v¡A¦@peak_count­Ó¶g´Á
 for n = 1:frame_num
-	temp_count = peak_count;
+    temp_count = peak_count;
 	peak_end = 1;
 	if Energy(n) < energy_sill
 		pitch(n) = 0;
 		continue;
 	end
-	for m = 2:frame_size-1
+	for m = 40:frame_size-1
 		if temp_count == 0
 			break;
 		end
-		if (autocorrelation_all(n,m) > autocorrelation_all(n,m-1)) && (autocorrelation_all(n,m) > autocorrelation_all(n,m+1)) % find peak
+		if (autocorrelation_all(n,m) > autocorrelation_all(n,m-1)) && (autocorrelation_all(n,m) > autocorrelation_all(n,m+1))
 			temp_count = temp_count - 1;
             peak_end = m;
 		end
 	end
 	pitch(n) = audioInfo.SampleRate/((peak_end-peak_start)/peak_count);
 end
-
+pitch=smooth(pitch);
 subplot(6, 1, 5);
 x = 1:frame_num;
 plot(x, pitch);

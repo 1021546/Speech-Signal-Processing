@@ -13,9 +13,11 @@ for n = 1:frame_num % record each frame autocorrelation
 	end
 end
 
+for n = 1:frame_num
+	autocorrelation_all(n,:) = smooth(autocorrelation_all(n,:));
+end
+
 autocorrelation_temp = autocorrelation_all(frame_autocorrelation_no,:);
-
-
 
 subplot(6, 1, 4);
 x = 1:frame_size;
